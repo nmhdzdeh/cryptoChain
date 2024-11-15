@@ -51,7 +51,9 @@ describe("Block", () => {
       expect(minedBlock.timestamp).not.toEqual(undefined);
     });
     it("create a SHA-256 `hash` based on the proper inputs", () => {
-      expect(minedBlock.hash).toEqual(cryptoHash(minedBlock.timestamp,lastBlock.hash,data))
+      expect(minedBlock.hash).toEqual(
+        cryptoHash(minedBlock.timestamp, lastBlock.hash, data)
+      );
     });
   });
 });

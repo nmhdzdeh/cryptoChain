@@ -7,6 +7,8 @@ describe("cryptoHash()", () => {
     );
   });
   it("produces the same hash with the same input in any order", () => {
-    expect(cryptoHash("one", "two", "three")).toEqual(cryptoHash("three", "two", "one"));
+    expect(cryptoHash("one", "two", "three")).toEqual(
+      cryptoHash("three", "two", "one")
+    );
   });
 });
