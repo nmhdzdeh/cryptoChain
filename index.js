@@ -3,15 +3,43 @@ const Blockchain = require("./blockchain");
 const Pubsub = require("./app/pubsub");
 const tcpPortUsed = require("tcp-port-used");
 const axios = require("axios");
+const TransactionPool = require("./wallet/transaction-pool");
+const Wallet = require("./wallet");
 
 const app = express();
 app.use(express.json());
 
 const blockchain = new Blockchain();
+const transactionPool = new TransactionPool();
+const wallet = new Wallet();
 const pubsub = new Pubsub({ blockchain });
 
 app.get("/api/blocks", (req, res) => {
   res.json(blockchain.chain);
+});
+
+app.post("/api/transact", (req, res) => {
+  let { amount, recipient } = req.body;
+  amount = parseInt(amount);
+  let transaction = transactionPool.existingTransaction({
+    inputAddress: wallet.publicKey,
+  });
+  try {
+    if (transaction) {
+      transaction.update({
+        senderWallet: wallet,
+        recipient,
+        amount,
+      });
+    } else {
+      transaction = wallet.createTransaction({ recipient, amount });
+    }
+  } catch (error) {
+    return res.json({ type: "error", message: error.message });
+  }
+  transactionPool.setTransaction(transaction);
+  console.log("transactionPool", transactionPool);
+  res.json({ transaction });
 });
 
 app.post("/api/mine", (req, res) => {
