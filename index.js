@@ -26,6 +26,16 @@ app.get("/api/blocks", (req, res) => {
   res.json(blockchain.chain);
 });
 
+app.get("/api/wallet-info", (req, res) => {
+  res.json({
+    address: wallet.publicKey,
+    balance: Wallet.calculateBalance({
+      chain: blockchain.chain,
+      address: wallet.publicKey,
+    }),
+  });
+});
+
 app.get("/api/mine-transaction", (req, res) => {
   transactionMiner.mineTransactions();
   res.redirect("/api/blocks");
