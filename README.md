@@ -1,4 +1,10 @@
 # cryptoChain
+![Node](https://img.shields.io/badge/Node-20.18.0-green)
+![RedisServer](https://img.shields.io/badge/RedisServer-7.4.0-blue)
+![Express](https://img.shields.io/badge/Express-4.21.1-orange)
+![Redis](https://img.shields.io/badge/Redis-3.1.2-yellow)
+
+
 
 This is a cryptochain clone project built using Node.js, Express, Redis, and Test-Driven Development (TDD) tests. It provides a basic implementation of a cryptocurrency blockchain network, allowing users to create and manage transactions, mine new blocks, and maintain the distributed ledger.
 
