@@ -74,27 +74,28 @@ describe("TransacrionPool", () => {
     });
   });
 
-  describe("clearBlockchainTransactions()", () => {
-    it("clears the pool of any existing blockchain transactions", () => {
+  describe('clearBlockchainTransactions()', ()=>{
+    it('clears the pool of any existing blockchian transactions', ()=>{
       const blockchain = new Blockchain();
       const expectedTransactionMap = {};
 
-      for (let i; i < 6; i++) {
+      for(let i=0; i<6; i++){
         const transaction = new Wallet().createTransaction({
-          recipient: "foo",
-          amount: 20,
+          recipient: 'foo',
+          amount: 20
         });
 
         transactionPool.setTransaction(transaction);
 
-        if (i % 2 == 0) {
-          blockchain.addBlock({ data: [transaction] });
-        } else {
+        if(i%2==0){
+          blockchain.addBlock({data: [transaction]});
+        }else{
           expectedTransactionMap[transaction.id] = transaction;
         }
       }
-      transactionPool.clearBlockchainTransactions({ chain: blockchain.chain });
+
+      transactionPool.clearBlockchainTransactions({chain: blockchain.chain});
       expect(transactionPool.transactionMap).toEqual(expectedTransactionMap);
-    });
-  });
+    })
+  })
 });
