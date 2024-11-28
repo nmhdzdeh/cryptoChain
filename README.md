@@ -19,7 +19,7 @@ The project utilizes Node.js and Express for the backend implementation. Additio
 -   Create and manage cryptocurrency transactions
 -   Mine new blocks and add them to the blockchain
 -   Validate the integrity of the blockchain
--   Implement a basic consensus mechanism (e.g., Proof of Work)
+-   Implement a basic consensus mechanism (Proof of Work)
 -   Provide a RESTful API for interacting with the blockchain
 -   Comprehensive TDD tests to ensure code quality and functionality
 
